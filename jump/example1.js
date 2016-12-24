@@ -2,6 +2,7 @@ var example1 = function (Kotlin) {
   'use strict';
   var _ = Kotlin.defineRootPackage(function () {
     this.MainAssets = Kotlin.kotlin.collections.listOf_9mqe4v$(['logo.png', 'logo2.png', 'panda.png']);
+    this.JumpAudioAssets = Kotlin.kotlin.collections.listOf_9mqe4v$(['sound.m4a', 'music2.m4a']);
     this.JumpAssets = Kotlin.kotlin.collections.listOf_9mqe4v$(['font2.fnt', 'background.png', 'player01.png', 'rope01.png', 'rope02.png', 'rope03.png']);
   }, /** @lends _ */ {
     mainOld_kand9s$: function (args) {
@@ -10,22 +11,22 @@ var example1 = function (Kotlin) {
     MainModule: Kotlin.createObject(function () {
       return [_.Koala.Module];
     }, function MainModule() {
-      MainModule.baseInitializer.call(this, 'game.logo', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.LogoScene)), _.MainAssets);
+      MainModule.baseInitializer.call(this, 'game.logo', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.LogoScene)), _.MainAssets, Kotlin.kotlin.collections.emptyList());
     }),
     SceneChangeModule: Kotlin.createObject(function () {
       return [_.Koala.Module];
     }, function SceneChangeModule() {
-      SceneChangeModule.baseInitializer.call(this, 'game.colors', Kotlin.kotlin.collections.listOf_9mqe4v$([Kotlin.getCallableRefForConstructor(_.RedScene), Kotlin.getCallableRefForConstructor(_.GreenScene)]), Kotlin.kotlin.collections.emptyList());
+      SceneChangeModule.baseInitializer.call(this, 'game.colors', Kotlin.kotlin.collections.listOf_9mqe4v$([Kotlin.getCallableRefForConstructor(_.RedScene), Kotlin.getCallableRefForConstructor(_.GreenScene)]), Kotlin.kotlin.collections.emptyList(), Kotlin.kotlin.collections.emptyList());
     }),
     SpriteAlphaModule: Kotlin.createObject(function () {
       return [_.Koala.Module];
     }, function SpriteAlphaModule() {
-      SpriteAlphaModule.baseInitializer.call(this, 'game.alpha', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.SpriteAlphaScene)), _.MainAssets);
+      SpriteAlphaModule.baseInitializer.call(this, 'game.alpha', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.SpriteAlphaScene)), _.MainAssets, Kotlin.kotlin.collections.emptyList());
     }),
     AnimModule: Kotlin.createObject(function () {
       return [_.Koala.Module];
     }, function AnimModule() {
-      AnimModule.baseInitializer.call(this, 'game.anim', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.AnimScene)), _.MainAssets);
+      AnimModule.baseInitializer.call(this, 'game.anim', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.AnimScene)), _.MainAssets, Kotlin.kotlin.collections.emptyList());
     }),
     PandaIcon: Kotlin.createClass(function () {
       return [game.Sprite];
@@ -154,7 +155,7 @@ var example1 = function (Kotlin) {
     JumpModule: Kotlin.createObject(function () {
       return [_.Koala.Module];
     }, function JumpModule() {
-      JumpModule.baseInitializer.call(this, 'game.logo', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.JumpScene)), _.JumpAssets);
+      JumpModule.baseInitializer.call(this, 'game.logo', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.JumpScene)), _.JumpAssets, _.JumpAudioAssets);
     }),
     Player: Kotlin.createClass(function () {
       return [game.Sprite];
@@ -168,6 +169,8 @@ var example1 = function (Kotlin) {
     }, /** @lends _.Player.prototype */ {
       init: function () {
         this.position.set(392, this.groundY);
+        this.jumpSound = new game.Sound('sound.m4a');
+        this.jumpSound.volume = 0.5;
       },
       update: function () {
         if (this.jumping) {
@@ -184,6 +187,7 @@ var example1 = function (Kotlin) {
           return;
         this.jumping = true;
         this.incrY = -this.jumpSpeed;
+        this.jumpSound.play();
       }
     }),
     JumpScene: Kotlin.createClass(function () {
@@ -201,7 +205,8 @@ var example1 = function (Kotlin) {
       this.numFrames = 3;
     }, /** @lends _.JumpScene.prototype */ {
       init: function () {
-        game.addAudio('sound.m4a');
+        this.music = new game.Music('music2.m4a');
+        this.music.play();
         this.backgroundColor = '#666';
         this.backgroundSprite = (new game.Sprite('background.png')).addTo(this.stage);
         this.ropeAnim = new game.Animation(['rope01.png', 'rope02.png', 'rope03.png', 'rope02.png']);
@@ -250,9 +255,6 @@ var example1 = function (Kotlin) {
       mousedown: function (x, y) {
         this.increaseRopeSpeed();
         this.player.jump();
-        this.jumpSound = new game.Sound('sound.m4a');
-        this.jumpSound.volume = 0.5;
-        this.jumpSound.play();
       },
       mousemove: function (x, y) {
       },
@@ -303,10 +305,11 @@ var example1 = function (Kotlin) {
       }
     }),
     Koala: Kotlin.definePackage(null, /** @lends _.Koala */ {
-      Module: Kotlin.createClass(null, function Module(name, scenes, assets) {
+      Module: Kotlin.createClass(null, function Module(name, scenes, assets, soundAssets) {
         this.name = name;
         this.scenes = scenes;
         this.assets = assets;
+        this.soundAssets = soundAssets;
       }),
       addModule_ndw8yw$f: function (closure$module) {
         return function () {
@@ -317,10 +320,16 @@ var example1 = function (Kotlin) {
             game.addAsset(element);
           }
           var tmp$1;
-          tmp$1 = closure$module.scenes.iterator();
+          tmp$1 = closure$module.soundAssets.iterator();
           while (tmp$1.hasNext()) {
             var element_0 = tmp$1.next();
-            var scene = element_0();
+            game.addAudio(element_0);
+          }
+          var tmp$2;
+          tmp$2 = closure$module.scenes.iterator();
+          while (tmp$2.hasNext()) {
+            var element_1 = tmp$2.next();
+            var scene = element_1();
             game.createScene(scene.name, scene);
           }
         };
