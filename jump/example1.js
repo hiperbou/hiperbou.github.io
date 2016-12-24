@@ -2,7 +2,7 @@ var example1 = function (Kotlin) {
   'use strict';
   var _ = Kotlin.defineRootPackage(function () {
     this.MainAssets = Kotlin.kotlin.collections.listOf_9mqe4v$(['logo.png', 'logo2.png', 'panda.png']);
-    this.JumpAssets = Kotlin.kotlin.collections.listOf_9mqe4v$(['font.fnt', 'font2.fnt', 'background.png', 'player01.png', 'rope01.png', 'rope02.png', 'rope03.png']);
+    this.JumpAssets = Kotlin.kotlin.collections.listOf_9mqe4v$(['font2.fnt', 'background.png', 'player01.png', 'rope01.png', 'rope02.png', 'rope03.png']);
   }, /** @lends _ */ {
     mainOld_kand9s$: function (args) {
       _.Koala.addModule_ndw8yw$(_.SpriteAlphaModule);
