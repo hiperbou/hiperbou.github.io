@@ -201,6 +201,7 @@ var example1 = function (Kotlin) {
       this.numFrames = 3;
     }, /** @lends _.JumpScene.prototype */ {
       init: function () {
+        game.addAudio('sound.m4a');
         this.backgroundColor = '#666';
         this.backgroundSprite = (new game.Sprite('background.png')).addTo(this.stage);
         this.ropeAnim = new game.Animation(['rope01.png', 'rope02.png', 'rope03.png', 'rope02.png']);
@@ -249,6 +250,9 @@ var example1 = function (Kotlin) {
       mousedown: function (x, y) {
         this.increaseRopeSpeed();
         this.player.jump();
+        this.jumpSound = new game.Sound('sound.m4a');
+        this.jumpSound.volume = 0.5;
+        this.jumpSound.play();
       },
       mousemove: function (x, y) {
       },
