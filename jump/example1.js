@@ -191,6 +191,7 @@ var example1 = function (Kotlin) {
     }, function JumpScene() {
       JumpScene.baseInitializer.call(this);
       this.ropeSpeed = 1.0;
+      this.hiScore = 0;
       this.score = 0;
       this.currentAngle = 0.0;
       this.incrAngle = 0.05;
@@ -209,8 +210,11 @@ var example1 = function (Kotlin) {
         this.player = new _.Player();
         this.player.addTo(this.stage);
         this.setScore_3p81yu$(this.score);
+        this.setHiScore_3p81yu$(this.hiScore);
       },
       resetGame: function () {
+        if (this.score > this.hiScore)
+          this.resetHiScore_za3lpa$(this.score);
         this.resetScore();
         this.resetRopeSpeed();
       },
@@ -230,6 +234,17 @@ var example1 = function (Kotlin) {
         this.scoreText.anchorCenter();
         this.scoreText.scale.set(2, 2);
         this.scoreText.addTo(this.stage);
+      },
+      setHiScore_3p81yu$: function (score) {
+        this.hiScoreText = new game.Text(score.toString(), _.JumpScene.setHiScore_3p81yu$f);
+        this.hiScoreText.position.set(800, 4);
+        this.hiScoreText.scale.set(1.8, 1.8);
+        this.hiScoreText.addTo(this.stage);
+      },
+      resetHiScore_za3lpa$: function (score) {
+        this.hiScore = score;
+        this.hiScoreText.remove();
+        this.setHiScore_3p81yu$(score);
       },
       mousedown: function (x, y) {
         this.increaseRopeSpeed();
@@ -277,6 +292,9 @@ var example1 = function (Kotlin) {
       }
     }, /** @lends _.JumpScene */ {
       setScore_3p81yu$f: function () {
+        var font = 'Arial';
+      },
+      setHiScore_3p81yu$f: function () {
         var font = 'Arial';
       }
     }),
