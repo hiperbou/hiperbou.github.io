@@ -1,0 +1,43 @@
+{
+    "level": [
+        {
+            "type": "atlas",
+            "key": "jumpAtlas",
+            "textureURL": "assets/jump/atlas/jumpAtlas.png",
+            "atlasURL": "assets/jump/atlas/jumpAtlas.json",
+            "format": "TEXTURE_ATLAS_JSON_HASH"
+        },
+        {
+            "type": "audio",
+            "key": "music2",
+            "urls": ["assets/jump/audio/music2.m4a"],
+            "autoDecode": true
+        },
+        {
+            "type": "audio",
+            "key": "sound",
+            "urls": ["assets/jump/audio/sound.m4a"],
+            "autoDecode": true
+        },
+        {
+            "type": "bitmapFont",
+            "key": "font2",
+            "textureURL": "assets/jump/fonts/font2.png",
+            "atlasURL": "assets/jump/fonts/font2.fnt",
+            "xSpacing": 0,
+            "ySpacing": 0
+        },
+        {
+            "type": "script",
+            "key": "level",
+            "url": "assets/jump/canvas/level.js"
+        }
+    ],
+    "meta": {
+        "generated": "1483802183362",
+        "app": "Phaser Editor",
+        "url": "http://phasereditor.boniatillo.com",
+        "version": "1.0",
+        "copyright": "Arian Fornaris (c) 2015,2016"
+    }
+}

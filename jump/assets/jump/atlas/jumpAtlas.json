@@ -1,0 +1,129 @@
+{
+  "frames": {
+    "background": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 2,
+        "y": 177,
+        "w": 960,
+        "h": 640
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 640
+      },
+      "sourceSize": {
+        "w": 960,
+        "h": 640
+      }
+    },
+    "player": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 183,
+        "y": 3,
+        "w": 148,
+        "h": 172
+      },
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 8,
+        "w": 148,
+        "h": 172
+      },
+      "sourceSize": {
+        "w": 164,
+        "h": 182
+      }
+    },
+    "rope1": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 634,
+        "y": 114,
+        "w": 300,
+        "h": 61
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 54,
+        "w": 300,
+        "h": 61
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 120
+      }
+    },
+    "rope2": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 333,
+        "y": 110,
+        "w": 299,
+        "h": 65
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 2,
+        "w": 299,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 120
+      }
+    },
+    "rope3": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 634,
+        "y": 52,
+        "w": 300,
+        "h": 60
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 2,
+        "w": 300,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 120
+      }
+    },
+    "sun": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 179,
+        "h": 173
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 179,
+        "h": 173
+      },
+      "sourceSize": {
+        "w": 179,
+        "h": 173
+      }
+    }
+  },
+  "meta": {
+    "app": "Phaser Editor",
+    "version": "1",
+    "image": "jumpAtlas.png"
+  }
+}

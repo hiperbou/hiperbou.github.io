@@ -1,0 +1,63 @@
+{
+  "settings": {
+    "sceneWidth": 640,
+    "sceneHeight": 360,
+    "generateOnSave": true,
+    "enableStepping": false
+  },
+  "world": {
+    "type": "group",
+    "id": "83e098d6-5ccd-444c-b592-0c6ee26c1197",
+    "info": {
+      "editorName": "level",
+      "children": [
+        {
+          "type": "atlas-sprite",
+          "id": "c4ee13fe-2e96-4c4d-a496-50eea8609f2f",
+          "asset": "0",
+          "info": {"editorName": "background"}
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "9d327622-a088-4aa4-9e3c-91e3e8e7875a",
+          "asset": "1",
+          "info": {
+            "editorName": "player",
+            "x": 390,
+            "y": 178
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "bbdfb0c9-d053-4f5d-ba42-f18c968f5217",
+          "asset": "2",
+          "info": {
+            "editorName": "rope1",
+            "x": 329,
+            "y": 426
+          }
+        }
+      ]
+    }
+  },
+  "asset-table": {
+    "0": {
+      "file": "WebContent/assets/jump/assets-pack.json",
+      "section": "level",
+      "asset": "jumpAtlas",
+      "sprite": "background"
+    },
+    "1": {
+      "file": "WebContent/assets/jump/assets-pack.json",
+      "section": "level",
+      "asset": "jumpAtlas",
+      "sprite": "player"
+    },
+    "2": {
+      "file": "WebContent/assets/jump/assets-pack.json",
+      "section": "level",
+      "asset": "jumpAtlas",
+      "sprite": "rope1"
+    }
+  }
+}
