@@ -1,574 +1,848 @@
-var example1 = function (Kotlin) {
+if (typeof kotlin === 'undefined') {
+  throw new Error("Error loading module 'example1'. Its dependency 'kotlin' was not found. Please, check whether 'kotlin' is loaded prior to 'example1'.");
+}
+var example1 = function (_, Kotlin) {
   'use strict';
-  var _ = Kotlin.defineRootPackage(function () {
-    this.MainAssets = Kotlin.kotlin.collections.listOf_9mqe4v$(['logo.png', 'logo2.png', 'panda.png']);
-    this.JumpAudioAssets = Kotlin.kotlin.collections.listOf_9mqe4v$(['sound.m4a', 'music2.m4a']);
-    this.JumpAssets = Kotlin.kotlin.collections.listOf_9mqe4v$(['font2.fnt', 'background.png', 'player01.png', 'rope01.png', 'rope02.png', 'rope03.png']);
-  }, /** @lends _ */ {
-    mainOld_kand9s$: function (args) {
-      _.Koala.addModule_ndw8yw$(_.SpriteAlphaModule);
-    },
-    MainModule: Kotlin.createObject(function () {
-      return [_.Koala.Module];
-    }, function MainModule() {
-      MainModule.baseInitializer.call(this, 'game.logo', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.LogoScene)), _.MainAssets, Kotlin.kotlin.collections.emptyList());
-    }),
-    SceneChangeModule: Kotlin.createObject(function () {
-      return [_.Koala.Module];
-    }, function SceneChangeModule() {
-      SceneChangeModule.baseInitializer.call(this, 'game.colors', Kotlin.kotlin.collections.listOf_9mqe4v$([Kotlin.getCallableRefForConstructor(_.RedScene), Kotlin.getCallableRefForConstructor(_.GreenScene)]), Kotlin.kotlin.collections.emptyList(), Kotlin.kotlin.collections.emptyList());
-    }),
-    SpriteAlphaModule: Kotlin.createObject(function () {
-      return [_.Koala.Module];
-    }, function SpriteAlphaModule() {
-      SpriteAlphaModule.baseInitializer.call(this, 'game.alpha', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.SpriteAlphaScene)), _.MainAssets, Kotlin.kotlin.collections.emptyList());
-    }),
-    AnimModule: Kotlin.createObject(function () {
-      return [_.Koala.Module];
-    }, function AnimModule() {
-      AnimModule.baseInitializer.call(this, 'game.anim', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.AnimScene)), _.MainAssets, Kotlin.kotlin.collections.emptyList());
-    }),
-    PandaIcon: Kotlin.createClass(function () {
-      return [game.Sprite];
-    }, function PandaIcon() {
-      PandaIcon.baseInitializer.call(this, 'panda.png');
-      this.interactive = true;
-    }, /** @lends _.PandaIcon.prototype */ {
-      init: function () {
-        this.scale.set(1, 1);
-      },
-      update: function () {
-        this.rotation += 1 * game.delta;
-      },
-      mousemove: function (x, y, id, event) {
-        this.alpha = 0.5;
-        return false;
-      },
-      mouseout: function (x, y, id, event) {
-        this.alpha = 1;
+  var properties_0 = Kotlin.kotlin.properties;
+  var get_js = Kotlin.kotlin.js.get_js_t5ir34$;
+  Sprite.prototype = Object.create(Phaser.Sprite.prototype);
+  Sprite.prototype.constructor = Sprite;
+  Player.prototype = Object.create(Sprite.prototype);
+  Player.prototype.constructor = Player;
+  Jump.prototype = Object.create(Phaser.State.prototype);
+  Jump.prototype.constructor = Jump;
+  var phaserGame;
+  function get_phaserGame() {
+    return phaserGame.getValue_dsk1ci$(this, new Kotlin.PropertyMetadata('phaserGame'));
+  }
+  function set_phaserGame(phaserGame_0) {
+    phaserGame.setValue_w32e13$(this, new Kotlin.PropertyMetadata('phaserGame'), phaserGame_0);
+  }
+  function Sprite(x, y, key, frame) {
+    Phaser.Sprite.call(this, get_phaserGame(), x, y, key, frame);
+  }
+  Sprite.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Sprite',
+    baseClasses: []
+  };
+  function initKoala(config) {
+    set_phaserGame(new Phaser.Game(config.width, config.height, config.renderer, config.parent, config.state, config.transparent, config.antialias, config.physicsConfig));
+    return get_phaserGame();
+  }
+  function T$2() {
+  }
+  T$2.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'T$2',
+    baseClasses: []
+  };
+  function RGBColor() {
+  }
+  RGBColor.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'RGBColor',
+    baseClasses: []
+  };
+  function ColorComponents() {
+  }
+  ColorComponents.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'ColorComponents',
+    baseClasses: [RGBColor]
+  };
+  function CursorKeys() {
+  }
+  CursorKeys.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'CursorKeys',
+    baseClasses: []
+  };
+  function SinCosGenerator() {
+  }
+  SinCosGenerator.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'SinCosGenerator',
+    baseClasses: []
+  };
+  function WheelEventProxy() {
+  }
+  WheelEventProxy.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'WheelEventProxy',
+    baseClasses: []
+  };
+  function T$9() {
+  }
+  T$9.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'T$9',
+    baseClasses: []
+  };
+  function T$10() {
+  }
+  T$10.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'T$10',
+    baseClasses: []
+  };
+  function T$11() {
+  }
+  T$11.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'T$11',
+    baseClasses: []
+  };
+  function T$12() {
+  }
+  T$12.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'T$12',
+    baseClasses: []
+  };
+  function PhaserTextStyle() {
+  }
+  PhaserTextStyle.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'PhaserTextStyle',
+    baseClasses: []
+  };
+  function T$13() {
+  }
+  T$13.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'T$13',
+    baseClasses: []
+  };
+  function T$14() {
+  }
+  T$14.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'T$14',
+    baseClasses: []
+  };
+  function T$15() {
+  }
+  T$15.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'T$15',
+    baseClasses: []
+  };
+  var kPI2;
+  var kPI;
+  function sin($receiver, value) {
+    return Math.sin(value);
+  }
+  function cos($receiver, value) {
+    return Math.cos(value);
+  }
+  function get_PI2($receiver) {
+    return kPI2;
+  }
+  function get_PI($receiver) {
+    return kPI;
+  }
+  function round($receiver, value) {
+    return Math.round(value);
+  }
+  function floor($receiver, value) {
+    return Math.floor(value);
+  }
+  function atan2($receiver, x, y) {
+    return Math.atan2(x, y);
+  }
+  function sqrt($receiver, value) {
+    return Math.sqrt(value);
+  }
+  function abs($receiver, value) {
+    return Math.abs(value);
+  }
+  function random($receiver) {
+    return Math.random();
+  }
+  function crop($receiver, rect, copy) {
+    if (copy === void 0)
+      copy = null;
+    $receiver.crop(rect, copy);
+  }
+  function destroy($receiver, destroyChildren, unknown) {
+    if (destroyChildren === void 0)
+      destroyChildren = null;
+    if (unknown === void 0)
+      unknown = null;
+    $receiver.destroy(destroyChildren, unknown);
+  }
+  function revive($receiver, health) {
+    if (health === void 0)
+      health = 100;
+    return $receiver.revive(health);
+  }
+  function reset($receiver, x, y, health) {
+    if (x === void 0)
+      x = null;
+    if (y === void 0)
+      y = null;
+    if (health === void 0)
+      health = null;
+    return $receiver.reset(x, y, health);
+  }
+  function setScaleMinMax($receiver, minX, minY, maxX, maxY) {
+    if (minX === void 0)
+      minX = null;
+    if (minY === void 0)
+      minY = null;
+    if (maxX === void 0)
+      maxX = null;
+    if (maxY === void 0)
+      maxY = null;
+    $receiver.setScaleMinMax(minX, minY, maxX, maxY);
+  }
+  function setTexture($receiver, texture) {
+    $receiver.setTexture(texture, undefined);
+  }
+  function setTexture_0($receiver, texture) {
+    $receiver.setTexture(texture, undefined);
+  }
+  function setTexture_1($receiver, texture, destroyBase) {
+    $receiver.setTexture(texture, destroyBase);
+  }
+  function setTexture_2($receiver, texture, destroyBase) {
+    $receiver.setTexture(texture, destroyBase);
+  }
+  function getBounds($receiver) {
+    return $receiver.getBounds(null);
+  }
+  function getBounds_0($receiver, targetCoordinateSpace) {
+    return $receiver.getBounds(targetCoordinateSpace);
+  }
+  function getBounds_1($receiver, targetCoordinateSpace) {
+    return $receiver.getBounds(targetCoordinateSpace);
+  }
+  function alignTo($receiver, container, position, offsetX, offsetY) {
+    if (position === void 0)
+      position = null;
+    if (offsetX === void 0)
+      offsetX = null;
+    if (offsetY === void 0)
+      offsetY = null;
+    return $receiver.alignTo(container, position, offsetX, offsetY);
+  }
+  function enable($receiver, spr, children) {
+    if (children === void 0)
+      children = undefined;
+    $receiver.enable(spr, children);
+  }
+  function enable_0($receiver, array, children) {
+    if (children === void 0)
+      children = undefined;
+    $receiver.enable(array, children);
+  }
+  function enable_1($receiver, spr, children) {
+    if (children === void 0)
+      children = undefined;
+    $receiver.enable(spr, children);
+  }
+  function enable_2($receiver, array, children) {
+    if (children === void 0)
+      children = undefined;
+    $receiver.enable(array, children);
+  }
+  function enable_3($receiver, spr, children) {
+    if (children === void 0)
+      children = undefined;
+    $receiver.enable(spr, children);
+  }
+  function enable_4($receiver, array, children) {
+    if (children === void 0)
+      children = undefined;
+    $receiver.enable(array, children);
+  }
+  function enable_5($receiver, group, children) {
+    if (children === void 0)
+      children = undefined;
+    $receiver.enable(group, children);
+  }
+  function enable_6($receiver, array, children) {
+    if (children === void 0)
+      children = undefined;
+    $receiver.enable(array, children);
+  }
+  function enable_7($receiver, spr, children) {
+    if (children === void 0)
+      children = undefined;
+    $receiver.enable(spr, children);
+  }
+  function enable_8($receiver, array, children) {
+    if (children === void 0)
+      children = undefined;
+    $receiver.enable(array, children);
+  }
+  function Asset(name, url) {
+    this.name = name;
+    this.url = url;
+  }
+  Asset.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Asset',
+    baseClasses: []
+  };
+  Asset.prototype.component1 = function () {
+    return this.name;
+  };
+  Asset.prototype.component2 = function () {
+    return this.url;
+  };
+  Asset.prototype.copy_puj7f4$ = function (name, url) {
+    return new Asset(name === void 0 ? this.name : name, url === void 0 ? this.url : url);
+  };
+  Asset.prototype.toString = function () {
+    return 'Asset(name=' + Kotlin.toString(this.name) + (', url=' + Kotlin.toString(this.url)) + ')';
+  };
+  Asset.prototype.hashCode = function () {
+    var result = 0;
+    result = result * 31 + Kotlin.hashCode(this.name) | 0;
+    result = result * 31 + Kotlin.hashCode(this.url) | 0;
+    return result;
+  };
+  Asset.prototype.equals = function (other) {
+    return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.name, other.name) && Kotlin.equals(this.url, other.url)))));
+  };
+  function start($receiver, state, clearWorld, clearCache, args) {
+    if (clearWorld === void 0)
+      clearWorld = null;
+    if (clearCache === void 0)
+      clearCache = null;
+    var stateID = get_js(Kotlin.getKClassFromExpression(state)).name;
+    $receiver.add(stateID, state, false);
+    $receiver.start(stateID);
+  }
+  function GameStateType(name) {
+    var tmp$;
+    return Kotlin.isType(tmp$ = name, Object) ? tmp$ : Kotlin.throwCCE();
+  }
+  function GameState(game) {
+  }
+  GameState.prototype.preload = function () {
+  };
+  GameState.prototype.create = function () {
+  };
+  GameState.prototype.update = function () {
+  };
+  GameState.prototype.render = function () {
+  };
+  GameState.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'GameState',
+    baseClasses: []
+  };
+  function TextStyle(font, fontStyle, fontVariant, fontWeight, fontSize, backgroundColor, fill, align, boundsAlignH, boundsAlignV, stroke, strokeThickness, wordWrap, wordWrapWidth, tabs) {
+    if (font === void 0)
+      font = null;
+    if (fontStyle === void 0)
+      fontStyle = null;
+    if (fontVariant === void 0)
+      fontVariant = null;
+    if (fontWeight === void 0)
+      fontWeight = null;
+    if (fontSize === void 0)
+      fontSize = null;
+    if (backgroundColor === void 0)
+      backgroundColor = null;
+    if (fill === void 0)
+      fill = null;
+    if (align === void 0)
+      align = null;
+    if (boundsAlignH === void 0)
+      boundsAlignH = null;
+    if (boundsAlignV === void 0)
+      boundsAlignV = null;
+    if (stroke === void 0)
+      stroke = null;
+    if (strokeThickness === void 0)
+      strokeThickness = null;
+    if (wordWrap === void 0)
+      wordWrap = null;
+    if (wordWrapWidth === void 0)
+      wordWrapWidth = null;
+    if (tabs === void 0)
+      tabs = null;
+    var out = {};
+    if (font != null)
+      out.font = font;
+    if (fontStyle != null)
+      out.fontStyle = fontStyle;
+    if (fontVariant != null)
+      out.fontVariant = fontVariant;
+    if (fontWeight != null)
+      out.fontWeight = fontWeight;
+    if (fontSize != null)
+      out.fontSize = fontSize;
+    if (backgroundColor != null)
+      out.backgroundColor = backgroundColor;
+    if (fill != null)
+      out.fill = fill;
+    if (align != null)
+      out.align = align;
+    if (boundsAlignH != null)
+      out.boundsAlignH = boundsAlignH;
+    if (boundsAlignV != null)
+      out.boundsAlignV = boundsAlignV;
+    if (stroke != null)
+      out.stroke = stroke;
+    if (strokeThickness != null)
+      out.strokeThickness = strokeThickness;
+    if (wordWrap != null)
+      out.wordWrap = wordWrap;
+    if (wordWrapWidth != null)
+      out.wordWrapWidth = wordWrapWidth;
+    if (tabs != null)
+      out.tabs = tabs;
+    return out;
+  }
+  function GameConfig(enableDebug, width, height, renderer, parent, transparent, antialias, resolution, physicsConfig, state) {
+    if (enableDebug === void 0)
+      enableDebug = null;
+    if (width === void 0)
+      width = null;
+    if (height === void 0)
+      height = null;
+    if (renderer === void 0)
+      renderer = null;
+    if (parent === void 0)
+      parent = null;
+    if (transparent === void 0)
+      transparent = null;
+    if (antialias === void 0)
+      antialias = null;
+    if (resolution === void 0)
+      resolution = null;
+    if (physicsConfig === void 0)
+      physicsConfig = null;
+    if (state === void 0)
+      state = null;
+    var out = {};
+    if (enableDebug != null)
+      out.enableDebug = enableDebug;
+    if (width != null)
+      out.width = width;
+    if (height != null)
+      out.height = height;
+    if (renderer != null)
+      out.renderer = renderer;
+    if (parent != null)
+      out.parent = parent;
+    if (transparent != null)
+      out.transparent = transparent;
+    if (antialias != null)
+      out.antialias = antialias;
+    if (resolution != null)
+      out.resolution = resolution;
+    if (physicsConfig != null)
+      out.physicsConfig = physicsConfig;
+    if (state != null)
+      out.state = state;
+    return out;
+  }
+  function IGameConfig() {
+  }
+  IGameConfig.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'IGameConfig',
+    baseClasses: []
+  };
+  function ContactMaterialOptions(friction, restitution, stiffness, relaxation, frictionStiffness, frictionRelaxation, surfaceVelocity) {
+    if (friction === void 0)
+      friction = null;
+    if (restitution === void 0)
+      restitution = null;
+    if (stiffness === void 0)
+      stiffness = null;
+    if (relaxation === void 0)
+      relaxation = null;
+    if (frictionStiffness === void 0)
+      frictionStiffness = null;
+    if (frictionRelaxation === void 0)
+      frictionRelaxation = null;
+    if (surfaceVelocity === void 0)
+      surfaceVelocity = null;
+    var out = {};
+    if (friction != null)
+      out.friction = friction;
+    if (restitution != null)
+      out.restitution = restitution;
+    if (stiffness != null)
+      out.stiffness = stiffness;
+    if (relaxation != null)
+      out.relaxation = relaxation;
+    if (frictionStiffness != null)
+      out.frictionStiffness = frictionStiffness;
+    if (frictionRelaxation != null)
+      out.frictionRelaxation = frictionRelaxation;
+    if (surfaceVelocity != null)
+      out.surfaceVelocity = surfaceVelocity;
+    return out;
+  }
+  function IContactMaterialOptions() {
+  }
+  IContactMaterialOptions.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'IContactMaterialOptions',
+    baseClasses: []
+  };
+  function image($receiver, asset) {
+    return $receiver.image(asset.name, asset.url);
+  }
+  function images($receiver, assets) {
+    var tmp$;
+    for (tmp$ = 0; tmp$ !== assets.length; ++tmp$) {
+      var element = assets[tmp$];
+      $receiver.image(element.name, element.url);
+    }
+  }
+  function images_0($receiver, assets) {
+    var tmp$;
+    tmp$ = assets.iterator();
+    while (tmp$.hasNext()) {
+      var element = tmp$.next();
+      $receiver.image(element.name, element.url);
+    }
+  }
+  function sound($receiver, asset) {
+    return $receiver.audio(asset.name, asset.url);
+  }
+  function sounds($receiver, assets) {
+    var tmp$;
+    for (tmp$ = 0; tmp$ !== assets.length; ++tmp$) {
+      var element = assets[tmp$];
+      $receiver.audio(element.name, element.url);
+    }
+  }
+  function sounds_0($receiver, assets) {
+    var tmp$;
+    tmp$ = assets.iterator();
+    while (tmp$.hasNext()) {
+      var element = tmp$.next();
+      $receiver.audio(element.name, element.url);
+    }
+  }
+  function DirectionObj() {
+  }
+  DirectionObj.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'DirectionObj',
+    baseClasses: []
+  };
+  function main(args) {
+    jumpMain();
+  }
+  var Math_0;
+  function jumpMain() {
+    var game = initKoala(GameConfig(void 0, gameProperties_getInstance().screenWidth, gameProperties_getInstance().screenHeight, Phaser.AUTO, 'gameDiv', void 0, void 0, void 0, void 0, new Jump()));
+  }
+  function gameProperties() {
+    gameProperties_instance = this;
+    this.screenWidth = 960.0;
+    this.screenHeight = 640.0;
+  }
+  gameProperties.$metadata$ = {
+    type: Kotlin.TYPE.OBJECT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'gameProperties',
+    baseClasses: []
+  };
+  var gameProperties_instance = null;
+  function gameProperties_getInstance() {
+    if (gameProperties_instance === null) {
+      gameProperties_instance = new gameProperties();
+    }
+    return gameProperties_instance;
+  }
+  function Player(jumpSound) {
+    Sprite.call(this, 392.0, 350.0, 'jumpAtlas', 'player');
+    this.jumpSound = jumpSound;
+    this.jumpSpeed = 12.0;
+    this.incrY = 0.0;
+    this.grav = 0.98;
+    this.groundY = 350.0;
+    this.jumping = true;
+    this.position.set(392, this.groundY);
+    this.jumpSound.volume = 0.5;
+  }
+  Player.prototype.update = function () {
+    if (this.jumping) {
+      this.incrY += this.grav;
+      this.position.y = this.position.y + this.incrY;
+      if (this.position.y > this.groundY) {
+        this.position.y = this.groundY;
+        this.jumping = false;
       }
-    }),
-    SpriteAlphaScene: Kotlin.createClass(function () {
-      return [_.Panda.Scene];
-    }, function SpriteAlphaScene() {
-      SpriteAlphaScene.baseInitializer.call(this);
-      this.sprite = new game.Sprite('panda.png');
-      this.movingSprite = new game.Sprite('panda.png');
-      this.speed = 100.0;
-    }, /** @lends _.SpriteAlphaScene.prototype */ {
-      init: function () {
-        this.backgroundColor = '#666';
-        this.sprite = new game.Sprite('panda.png');
-        this.movingSprite = new game.Sprite('panda.png');
-        var sprite = (new game.Sprite('logo.png')).addTo(this.stage);
-        sprite.alpha = 0.5;
-        sprite.blendMode = _.Panda.BlendModes.lighter.ordinal;
-        sprite.scale.set(0.5, 0.5);
-        sprite.visible = true;
-        var sprite2 = (new game.Sprite('logo.png')).addTo(this.stage);
-        sprite2.position.set(300, 300);
-        sprite2.alpha = 0.5;
-        sprite2.skew.set(0.5, 1);
-        sprite.addChild(sprite2);
-        this.sprite.addTo(this.stage);
-        this.movingSprite.addTo(this.stage);
-      },
-      mousedown: function (x, y) {
-        var sprite = new _.PandaIcon();
-        sprite.position.set(x, y);
-        sprite.addTo(this.stage);
-      },
-      mousemove: function (x, y) {
-        this.sprite.position.set(x, y);
-      },
-      keydown: function (key) {
-        if (Kotlin.equals(key, 'SPACE')) {
-          var sprite = new game.Sprite('logo.png');
-          sprite.position.set(123, 123);
-          sprite.addTo(this.stage);
-        }
-      },
-      update: function () {
-        if (game.keyboard.down('UP')) {
-          this.movingSprite.position.y = this.movingSprite.position.y - this.speed * game.system.delta;
-        }
-        if (game.keyboard.down('DOWN')) {
-          this.movingSprite.position.y = this.movingSprite.position.y + this.speed * game.delta;
-        }
-        if (game.keyboard.down('LEFT')) {
-          this.movingSprite.position.x = this.movingSprite.position.x - this.speed * game.delta;
-        }
-        if (game.keyboard.down('RIGHT')) {
-          this.movingSprite.position.x = this.movingSprite.position.x + this.speed * game.delta;
-        }
-      }
-    }),
-    LogoScene: Kotlin.createClass(function () {
-      return [_.Panda.Scene];
-    }, function LogoScene() {
-      LogoScene.baseInitializer.call(this);
-    }, /** @lends _.LogoScene.prototype */ {
-      init: function () {
-        this.backgroundColor = '#666';
-        var logo = (new game.Sprite('logo.png')).center(this.stage).addTo(this.stage);
-      },
-      mousedown: function (x, y) {
-        game.system.setScene('RedScene');
-      }
-    }),
-    RedScene: Kotlin.createClass(function () {
-      return [_.Panda.Scene];
-    }, function RedScene() {
-      RedScene.baseInitializer.call(this, 'RedScene');
-      this.backgroundColor = '#ff0000';
-    }, /** @lends _.RedScene.prototype */ {
-      mousedown: function (x, y) {
-        game.system.setScene('GreenScene');
-      }
-    }),
-    GreenScene: Kotlin.createClass(function () {
-      return [_.Panda.Scene];
-    }, function GreenScene() {
-      GreenScene.baseInitializer.call(this, 'GreenScene');
-      this.backgroundColor = '#00ff00';
-    }, /** @lends _.GreenScene.prototype */ {
-      mousedown: function (x, y) {
-        game.system.setScene('Main');
-      }
-    }),
-    AnimScene: Kotlin.createClass(function () {
-      return [_.Panda.Scene];
-    }, function AnimScene() {
-      AnimScene.baseInitializer.call(this);
-    }, /** @lends _.AnimScene.prototype */ {
-      init: function () {
-        this.backgroundColor = '#666';
-        var anim = new game.Animation(['logo.png', 'logo2.png', 'logo.png']);
-        anim.speed = 3;
-        anim.play();
-        anim.addTo(this.stage);
-      }
-    }),
-    main_kand9s$: function (args) {
-      _.Koala.addModule_ndw8yw$(_.JumpModule);
-    },
-    JumpModule: Kotlin.createObject(function () {
-      return [_.Koala.Module];
-    }, function JumpModule() {
-      JumpModule.baseInitializer.call(this, 'game.logo', Kotlin.kotlin.collections.listOf_za3rmp$(Kotlin.getCallableRefForConstructor(_.JumpScene)), _.JumpAssets, _.JumpAudioAssets);
-    }),
-    Player: Kotlin.createClass(function () {
-      return [game.Sprite];
-    }, function Player() {
-      Player.baseInitializer.call(this, 'player01.png');
-      this.jumpSpeed = 12.0;
-      this.incrY = 0.0;
-      this.grav = 0.98;
-      this.groundY = 350.0;
-      this.jumping = true;
-    }, /** @lends _.Player.prototype */ {
-      init: function () {
-        this.position.set(392, this.groundY);
-        this.jumpSound = new game.Sound('sound.m4a');
-        this.jumpSound.volume = 0.5;
-      },
-      update: function () {
-        if (this.jumping) {
-          this.incrY += this.grav;
-          this.position.y = this.position.y + this.incrY;
-          if (this.position.y > this.groundY) {
-            this.position.y = this.groundY;
-            this.jumping = false;
-          }
-        }
-      },
-      jump: function () {
-        if (this.jumping)
-          return;
-        this.jumping = true;
-        this.incrY = -this.jumpSpeed;
-        this.jumpSound.play();
-      }
-    }),
-    JumpScene: Kotlin.createClass(function () {
-      return [_.Panda.Scene];
-    }, function JumpScene() {
-      JumpScene.baseInitializer.call(this);
-      this.ropeSpeed = 1.0;
-      this.hiScore = 0;
-      this.score = 0;
-      this.currentAngle = 0.0;
-      this.incrAngle = 0.05;
+    }
+  };
+  Player.prototype.jump = function () {
+    if (this.jumping)
+      return;
+    this.jumping = true;
+    this.incrY = -this.jumpSpeed;
+    this.jumpSound.play();
+  };
+  Player.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Player',
+    baseClasses: [Sprite]
+  };
+  function Jump() {
+    Phaser.State.call(this);
+    this.anim = ['rope1', 'rope2', 'rope3', 'rope2'];
+    this.ropeSpeed = 1.0;
+    this.hiScore = 0;
+    this.score = 0;
+    this.currentAngle = 0.0;
+    this.incrAngle = 0.05;
+    this.ropeOnBack = true;
+    this.direction = 0;
+    this.lastResult = 0.0;
+    this.numFrames = 3;
+  }
+  Jump.prototype.preload = function () {
+    console.log('preload');
+    this.game.load.pack('level', 'assets/jump/assets-pack.json', null, this);
+  };
+  Jump.prototype.loadUpdate = function () {
+    console.log('loadUpdate');
+  };
+  function Jump$create$ObjectLiteral() {
+    this.angle = 35;
+  }
+  Jump$create$ObjectLiteral.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    baseClasses: []
+  };
+  Jump.prototype.create = function () {
+    console.log('create');
+    this.lev = new level(this.game);
+    var music = this.game.add.audio('music');
+    var sound_0 = this.game.add.sound('sound');
+    music.play();
+    var sun = this.lev.fSun;
+    sun.angle = -35.0;
+    this.game.add.tween(sun).to(new Jump$create$ObjectLiteral(), 1000, Kotlin.getBoundCallableRefForMemberFunction(Phaser.Easing.Quadratic, 'Out'), true, null, -1).yoyo(true);
+    this.ropeAnim = this.lev.fRope1;
+    this.player = new Player(sound_0);
+    this.lev.addChild(this.player);
+    this.scoreText = this.game.add.bitmapText(480, 170, 'font2', '0', 70);
+    this.hiScoreText = this.game.add.bitmapText(800, 0, 'font2', '0', 54);
+    this.scoreText.anchor.set(0.5, 0.5);
+    this.hiScoreText.anchor.set(0.0, 0.2);
+    this.setScore_3p81yu$(this.score);
+    this.setHiScore_3p81yu$(this.hiScore);
+    this.game.input.onDown.add(Kotlin.getBoundCallableRefForMemberFunction(this, 'onTap'), this);
+    this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(Kotlin.getBoundCallableRefForMemberFunction(this, 'keydown'));
+    this.setupScale_0(this.game);
+  };
+  Jump.prototype.setupScale_0 = function (game) {
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.pageAlignHorizontally = true;
+    game.scale.pageAlignVertically = true;
+    game.scale.refresh();
+  };
+  Jump.prototype.resetGame = function () {
+    if (this.score > this.hiScore)
+      this.resetHiScore_za3lpa$(this.score);
+    this.resetScore();
+    this.resetRopeSpeed();
+  };
+  Jump.prototype.resetScore = function () {
+    this.score = 0;
+    this.setScore_3p81yu$(this.score);
+  };
+  Jump.prototype.increaseScore = function () {
+    this.score++;
+    this.setScore_3p81yu$(this.score);
+  };
+  Jump.prototype.setScore_3p81yu$ = function (score) {
+    this.scoreText.text = score.toString();
+  };
+  Jump.prototype.setHiScore_3p81yu$ = function (score) {
+    this.hiScoreText.text = score.toString();
+  };
+  Jump.prototype.resetHiScore_za3lpa$ = function (score) {
+    this.hiScore = score;
+    this.setHiScore_3p81yu$(score);
+  };
+  Jump.prototype.onTap = function () {
+    this.increaseRopeSpeed();
+    this.player.jump();
+  };
+  Jump.prototype.keydown = function () {
+    this.increaseRopeSpeed();
+    this.player.jump();
+  };
+  Jump.prototype.update = function () {
+    var result = Math_0.sin(this.currentAngle);
+    if (result - this.lastResult > 0) {
+      this.direction = 1;
+    }
+    if (result - this.lastResult < 0) {
+      this.direction = -1;
+    }
+    this.lastResult = result;
+    if (this.direction > 0 && Kotlin.equals(this.ropeOnBack, false)) {
+      this.lev.swap(this.ropeAnim, this.player);
       this.ropeOnBack = true;
-      this.direction = 0;
-      this.lastResult = 0.0;
-      this.numFrames = 3;
-    }, /** @lends _.JumpScene.prototype */ {
-      init: function () {
-        this.music = new game.Music('music2.m4a');
-        this.music.play();
-        this.backgroundColor = '#666';
-        this.backgroundSprite = (new game.Sprite('background.png')).addTo(this.stage);
-        this.ropeAnim = new game.Animation(['rope01.png', 'rope02.png', 'rope03.png', 'rope02.png']);
-        this.ropeAnim.position.set(327, 426);
-        this.ropeAnim.speed = this.ropeSpeed;
-        this.ropeAnim.addTo(this.stage);
-        this.player = new _.Player();
-        this.player.addTo(this.stage);
-        this.setScore_3p81yu$(this.score);
-        this.setHiScore_3p81yu$(this.hiScore);
-      },
-      resetGame: function () {
-        if (this.score > this.hiScore)
-          this.resetHiScore_za3lpa$(this.score);
-        this.resetScore();
-        this.resetRopeSpeed();
-      },
-      resetScore: function () {
-        this.score = 0;
-        this.scoreText.remove();
-        this.setScore_3p81yu$(this.score);
-      },
-      increaseScore: function () {
-        this.score++;
-        this.scoreText.remove();
-        this.setScore_3p81yu$(this.score);
-      },
-      setScore_3p81yu$: function (score) {
-        this.scoreText = new game.Text(score.toString(), _.JumpScene.setScore_3p81yu$f);
-        this.scoreText.position.set(480, 170);
-        this.scoreText.anchorCenter();
-        this.scoreText.scale.set(2, 2);
-        this.scoreText.addTo(this.stage);
-      },
-      setHiScore_3p81yu$: function (score) {
-        this.hiScoreText = new game.Text(score.toString(), _.JumpScene.setHiScore_3p81yu$f);
-        this.hiScoreText.position.set(800, 4);
-        this.hiScoreText.scale.set(1.8, 1.8);
-        this.hiScoreText.addTo(this.stage);
-      },
-      resetHiScore_za3lpa$: function (score) {
-        this.hiScore = score;
-        this.hiScoreText.remove();
-        this.setHiScore_3p81yu$(score);
-      },
-      mousedown: function (x, y) {
-        this.increaseRopeSpeed();
-        this.player.jump();
-      },
-      mousemove: function (x, y) {
-      },
-      keydown: function (key) {
-        if (Kotlin.equals(key, 'SPACE')) {
-          this.player.jump();
-        }
-      },
-      update: function () {
-        var result = Math.sin(this.currentAngle);
-        if (result - this.lastResult > 0) {
-          this.direction = 1;
-        }
-        if (result - this.lastResult < 0) {
-          this.direction = -1;
-        }
-        this.lastResult = result;
-        if (this.direction > 0 && Kotlin.equals(this.ropeOnBack, false)) {
-          this.stage.swapChildren(this.ropeAnim, this.player);
-          this.ropeOnBack = true;
-          if (this.player.jumping) {
-            this.increaseScore();
-          }
-           else {
-            this.resetGame();
-          }
-        }
-        if (this.direction < 0 && this.ropeOnBack) {
-          this.stage.swapChildren(this.ropeAnim, this.player);
-          this.ropeOnBack = false;
-        }
-        this.currentAngle += this.incrAngle * this.ropeSpeed;
-        var ropeFrame = (result + 1) / 2 * this.numFrames | 0;
-        this.ropeAnim.gotoFrame(ropeFrame);
-      },
-      resetRopeSpeed: function () {
-        this.ropeSpeed = 1.0;
-      },
-      increaseRopeSpeed: function () {
-        this.ropeSpeed += 0.1;
+      if (this.player.jumping) {
+        this.increaseScore();
       }
-    }, /** @lends _.JumpScene */ {
-      setScore_3p81yu$f: function () {
-        var font = 'Arial';
-      },
-      setHiScore_3p81yu$f: function () {
-        var font = 'Arial';
+       else {
+        this.resetGame();
       }
-    }),
-    Koala: Kotlin.definePackage(null, /** @lends _.Koala */ {
-      Module: Kotlin.createClass(null, function Module(name, scenes, assets, soundAssets) {
-        this.name = name;
-        this.scenes = scenes;
-        this.assets = assets;
-        this.soundAssets = soundAssets;
-      }),
-      addModule_ndw8yw$f: function (closure$module) {
-        return function () {
-          var tmp$0;
-          tmp$0 = closure$module.assets.iterator();
-          while (tmp$0.hasNext()) {
-            var element = tmp$0.next();
-            game.addAsset(element);
-          }
-          var tmp$1;
-          tmp$1 = closure$module.soundAssets.iterator();
-          while (tmp$1.hasNext()) {
-            var element_0 = tmp$1.next();
-            game.addAudio(element_0);
-          }
-          var tmp$2;
-          tmp$2 = closure$module.scenes.iterator();
-          while (tmp$2.hasNext()) {
-            var element_1 = tmp$2.next();
-            var scene = element_1();
-            game.createScene(scene.name, scene);
-          }
-        };
-      },
-      addModule_ndw8yw$: function (module) {
-        game.module(module.name).body(_.Koala.addModule_ndw8yw$f(module));
-      }
-    }),
-    Panda: Kotlin.definePackage(null, /** @lends _.Panda */ {
-      Scene: Kotlin.createClass(null, function Scene(name) {
-        if (name === void 0)
-          name = 'Main';
-        this.name = name;
-      }, /** @lends _.Panda.Scene.prototype */ {
-        init: function () {
-        },
-        mousedown: function (x, y) {
-        },
-        mousemove: function (x, y) {
-        },
-        keydown: function (key) {
-        },
-        update: function () {
-        }
-      }),
-      BlendModes: Kotlin.createEnumClass(function () {
-        return [Kotlin.Enum];
-      }, function BlendModes() {
-        BlendModes.baseInitializer.call(this);
-      }, function () {
-        return {
-          source_over: function () {
-            return new _.Panda.BlendModes();
-          },
-          source_in: function () {
-            return new _.Panda.BlendModes();
-          },
-          source_out: function () {
-            return new _.Panda.BlendModes();
-          },
-          source_atop: function () {
-            return new _.Panda.BlendModes();
-          },
-          destination_over: function () {
-            return new _.Panda.BlendModes();
-          },
-          destination_in: function () {
-            return new _.Panda.BlendModes();
-          },
-          destination_out: function () {
-            return new _.Panda.BlendModes();
-          },
-          destination_atop: function () {
-            return new _.Panda.BlendModes();
-          },
-          lighter: function () {
-            return new _.Panda.BlendModes();
-          },
-          copy: function () {
-            return new _.Panda.BlendModes();
-          },
-          xor: function () {
-            return new _.Panda.BlendModes();
-          },
-          multiply: function () {
-            return new _.Panda.BlendModes();
-          },
-          screen: function () {
-            return new _.Panda.BlendModes();
-          },
-          overlay: function () {
-            return new _.Panda.BlendModes();
-          },
-          darken: function () {
-            return new _.Panda.BlendModes();
-          },
-          lighten: function () {
-            return new _.Panda.BlendModes();
-          },
-          color_dodge: function () {
-            return new _.Panda.BlendModes();
-          },
-          color_burn: function () {
-            return new _.Panda.BlendModes();
-          },
-          hard_light: function () {
-            return new _.Panda.BlendModes();
-          },
-          soft_light: function () {
-            return new _.Panda.BlendModes();
-          },
-          difference: function () {
-            return new _.Panda.BlendModes();
-          },
-          exclusion: function () {
-            return new _.Panda.BlendModes();
-          },
-          hue: function () {
-            return new _.Panda.BlendModes();
-          },
-          saturation: function () {
-            return new _.Panda.BlendModes();
-          },
-          color: function () {
-            return new _.Panda.BlendModes();
-          },
-          luminosity: function () {
-            return new _.Panda.BlendModes();
-          }
-        };
-      })
-    }),
-    Phaser: Kotlin.definePackage(null, /** @lends _.Phaser */ {
-      AssertName: Kotlin.createTrait(null),
-      Assert: Kotlin.createClass(null, function Assert(name, url) {
-        this.name = name;
-        this.url = url;
-      }, /** @lends _.Phaser.Assert.prototype */ {
-        component1: function () {
-          return this.name;
-        },
-        component2: function () {
-          return this.url;
-        },
-        copy_i88sg6$: function (name, url) {
-          return new _.Phaser.Assert_init_puj7f4$(name === void 0 ? this.name : name, url === void 0 ? this.url : url);
-        },
-        toString: function () {
-          return 'Assert(name=' + Kotlin.toString(this.name) + (', url=' + Kotlin.toString(this.url)) + ')';
-        },
-        hashCode: function () {
-          var result = 0;
-          result = result * 31 + Kotlin.hashCode(this.name) | 0;
-          result = result * 31 + Kotlin.hashCode(this.url) | 0;
-          return result;
-        },
-        equals_za3rmp$: function (other) {
-          return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.name, other.name) && Kotlin.equals(this.url, other.url)))));
-        }
-      }),
-      Assert_init_puj7f4$: function (name, url, $this) {
-        $this = $this || Object.create(_.Phaser.Assert.prototype);
-        _.Phaser.Assert.call($this, Kotlin.isType(tmp$0 = name, _.Phaser.AssertName) ? tmp$0 : Kotlin.throwCCE(), url);
-        return $this;
-      },
-      GameStateType: Kotlin.createTrait(null),
-      GameStateType_61zpoe$: function (name) {
-        var tmp$0;
-        return Kotlin.isType(tmp$0 = name, _.Phaser.GameStateType) ? tmp$0 : Kotlin.throwCCE();
-      },
-      GameState: Kotlin.createClass(null, function GameState(game) {
-      }, /** @lends _.Phaser.GameState.prototype */ {
-        preload: function () {
-        },
-        create: function () {
-        },
-        update: function () {
-        },
-        render: function () {
-        }
-      }),
-      TextStyle_gqcoa5$: function (font, fontStyle, fontVariant, fontWeight, fontSize, backgroundColor, fill, align, boundsAlignH, boundsAlignV, stroke, strokeThickness, wordWrap, wordWrapWidth, tabs) {
-        if (font === void 0)
-          font = null;
-        if (fontStyle === void 0)
-          fontStyle = null;
-        if (fontVariant === void 0)
-          fontVariant = null;
-        if (fontWeight === void 0)
-          fontWeight = null;
-        if (fontSize === void 0)
-          fontSize = null;
-        if (backgroundColor === void 0)
-          backgroundColor = null;
-        if (fill === void 0)
-          fill = null;
-        if (align === void 0)
-          align = null;
-        if (boundsAlignH === void 0)
-          boundsAlignH = null;
-        if (boundsAlignV === void 0)
-          boundsAlignV = null;
-        if (stroke === void 0)
-          stroke = null;
-        if (strokeThickness === void 0)
-          strokeThickness = null;
-        if (wordWrap === void 0)
-          wordWrap = null;
-        if (wordWrapWidth === void 0)
-          wordWrapWidth = null;
-        if (tabs === void 0)
-          tabs = null;
-        var out = {};
-        if (font != null)
-          out.font = font;
-        if (fontStyle != null)
-          out.fontStyle = fontStyle;
-        if (fontVariant != null)
-          out.fontVariant = fontVariant;
-        if (fontWeight != null)
-          out.fontWeight = fontWeight;
-        if (fontSize != null)
-          out.fontSize = fontSize;
-        if (backgroundColor != null)
-          out.backgroundColor = backgroundColor;
-        if (fill != null)
-          out.fill = fill;
-        if (align != null)
-          out.align = align;
-        if (boundsAlignH != null)
-          out.boundsAlignH = boundsAlignH;
-        if (boundsAlignV != null)
-          out.boundsAlignV = boundsAlignV;
-        if (stroke != null)
-          out.stroke = stroke;
-        if (strokeThickness != null)
-          out.strokeThickness = strokeThickness;
-        if (wordWrap != null)
-          out.wordWrap = wordWrap;
-        if (wordWrapWidth != null)
-          out.wordWrapWidth = wordWrapWidth;
-        if (tabs != null)
-          out.tabs = tabs;
-        return out;
-      },
-      image_we6qu1$: function ($receiver, assert) {
-        $receiver.image(assert.name, assert.url);
-      },
-      image_alw5g3$: function ($receiver, asserts) {
-        var tmp$2;
-        for (tmp$2 = 0; tmp$2 !== asserts.length; ++tmp$2) {
-          var element = asserts[tmp$2];
-          $receiver.image(element.name, element.url);
-        }
-      },
-      DirectionObj: Kotlin.createTrait(null)
-    })
+    }
+    if (this.direction < 0 && this.ropeOnBack) {
+      this.lev.swap(this.ropeAnim, this.player);
+      this.ropeOnBack = false;
+    }
+    this.currentAngle += this.incrAngle * this.ropeSpeed;
+    var ropeFrame = (result + 1) / 2 * this.numFrames | 0;
+    this.ropeAnim.frameName = this.anim[ropeFrame];
+  };
+  Jump.prototype.resetRopeSpeed = function () {
+    this.ropeSpeed = 1.0;
+  };
+  Jump.prototype.increaseRopeSpeed = function () {
+    this.ropeSpeed += 0.1;
+  };
+  Jump.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Jump',
+    baseClasses: []
+  };
+  var package$Koala = _.Koala || (_.Koala = {});
+  Object.defineProperty(package$Koala, 'phaserGame', {
+    get: get_phaserGame,
+    set: set_phaserGame
   });
+  package$Koala.Sprite_init_rpaqe6$ = Sprite_init;
+  package$Koala.Sprite = Sprite;
+  package$Koala.initKoala_lcgo3e$ = initKoala;
+  var package$Phaser = _.Phaser || (_.Phaser = {});
+  package$Phaser.T$2 = T$2;
+  package$Phaser.RGBColor = RGBColor;
+  package$Phaser.ColorComponents = ColorComponents;
+  package$Phaser.CursorKeys = CursorKeys;
+  package$Phaser.SinCosGenerator = SinCosGenerator;
+  package$Phaser.WheelEventProxy = WheelEventProxy;
+  package$Phaser.T$9 = T$9;
+  package$Phaser.T$10 = T$10;
+  package$Phaser.T$11 = T$11;
+  package$Phaser.T$12 = T$12;
+  package$Phaser.PhaserTextStyle = PhaserTextStyle;
+  package$Phaser.T$13 = T$13;
+  package$Phaser.T$14 = T$14;
+  package$Phaser.T$15 = T$15;
+  Object.defineProperty(package$Phaser, 'kPI2', {
+    get: function () {
+      return kPI2;
+    }
+  });
+  Object.defineProperty(package$Phaser, 'kPI', {
+    get: function () {
+      return kPI;
+    }
+  });
+  package$Phaser.sin_m4iyer$ = sin;
+  package$Phaser.cos_m4iyer$ = cos;
+  package$Phaser.get_PI2_akwgk1$ = get_PI2;
+  package$Phaser.get_PI_akwgk1$ = get_PI;
+  package$Phaser.round_hax2yj$ = round;
+  package$Phaser.floor_hax2yj$ = floor;
+  package$Phaser.atan2_g73mox$ = atan2;
+  package$Phaser.sqrt_m4iyer$ = sqrt;
+  package$Phaser.abs_m4iyer$ = abs;
+  package$Phaser.random_akwgk1$ = random;
+  package$Phaser.crop_p8qxvh$ = crop;
+  package$Phaser.destroy_2ajn2y$ = destroy;
+  package$Phaser.reviveKt = revive;
+  package$Phaser.resetKt = reset;
+  package$Phaser.setScaleMinMaxKt = setScaleMinMax;
+  package$Phaser.setTextureKt = setTexture;
+  package$Phaser.setTextureKt2 = setTexture_0;
+  package$Phaser.setTextureKt3 = setTexture_1;
+  package$Phaser.setTextureKt4 = setTexture_2;
+  package$Phaser.getBoundsKt = getBounds;
+  package$Phaser.getBoundsKt1 = getBounds_0;
+  package$Phaser.getBoundsKt2 = getBounds_1;
+  package$Phaser.alignKt = alignTo;
+  package$Phaser.enableKt = enable;
+  package$Phaser.enableKt2 = enable_0;
+  package$Phaser.enableKt3 = enable_1;
+  package$Phaser.enableKt4 = enable_2;
+  package$Phaser.enableKt5 = enable_3;
+  package$Phaser.enableKt6 = enable_4;
+  package$Phaser.enableKt7 = enable_5;
+  package$Phaser.enableKt8 = enable_6;
+  package$Phaser.enableKt9 = enable_7;
+  package$Phaser.enableKt10 = enable_8;
+  package$Phaser.Asset = Asset;
+  package$Phaser.start_6a57ie$ = start;
+  package$Phaser.GameStateType_61zpoe$ = GameStateType;
+  package$Phaser.GameState = GameState;
+  package$Phaser.TextStyle_gqcoa5$ = TextStyle;
+  package$Phaser.GameConfig_g1t93r$ = GameConfig;
+  package$Phaser.IGameConfig = IGameConfig;
+  package$Phaser.ContactMaterialOptions_20gh5a$ = ContactMaterialOptions;
+  package$Phaser.IContactMaterialOptions = IContactMaterialOptions;
+  package$Phaser.image_ci216l$ = image;
+  package$Phaser.images_wf56vb$ = images;
+  package$Phaser.images_dslnxl$ = images_0;
+  package$Phaser.sound_ci216l$ = sound;
+  package$Phaser.sounds_wf56vb$ = sounds;
+  package$Phaser.sounds_dslnxl$ = sounds_0;
+  package$Phaser.DirectionObj = DirectionObj;
+  _.main_kand9s$ = main;
+  var package$jump = _.jump || (_.jump = {});
+  Object.defineProperty(package$jump, 'Math', {
+    get: function () {
+      return Math_0;
+    }
+  });
+  package$jump.jumpMain = jumpMain;
+  Object.defineProperty(package$jump, 'gameProperties', {
+    get: gameProperties_getInstance
+  });
+  package$jump.Player = Player;
+  package$jump.Jump = Jump;
+  phaserGame = properties_0.Delegates.notNull();
+  function Sprite_init(x, y, key, $this) {
+    $this = $this || Object.create(Sprite.prototype);
+    Sprite.call($this, x, y, key, undefined);
+    return $this;
+  }
+  kPI2 = Math.PI * 2;
+  kPI = Math.PI;
+  Math_0 = Math;
   Kotlin.defineModule('example1', _);
-  _.main_kand9s$([]);
+  main([]);
   return _;
-}(kotlin);
+}(typeof example1 === 'undefined' ? {} : example1, kotlin);
