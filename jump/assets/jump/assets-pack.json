@@ -9,7 +9,7 @@
         },
         {
             "type": "audio",
-            "key": "music2",
+            "key": "music",
             "urls": ["assets/jump/audio/music2.m4a"],
             "autoDecode": true
         },
