@@ -707,6 +707,7 @@ var example1 = function (_, Kotlin) {
     this.backgroundFX.create();
     var music = this.game.add.audio('music');
     var sound_0 = this.game.add.sound('sound');
+    music.loop = true;
     music.play();
     var sun = this.lev.fSun;
     sun.angle = -35.0;
