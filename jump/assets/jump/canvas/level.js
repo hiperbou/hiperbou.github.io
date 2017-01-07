@@ -21,6 +21,8 @@ function level(aGame, aParent) {
 	var sun = this.game.add.sprite(95, 98, 'jumpAtlas', 'sun', this);
 	sun.anchor.setTo(0.5, 0.5);
 
+	this.game.add.sprite(-3, 7, 'jumpAtlas2', 'foreground', this);
+
 	 // public fields
 
 	this.fRope1 = rope1;

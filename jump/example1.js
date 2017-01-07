@@ -175,6 +175,9 @@ var example1 = function (_, Kotlin) {
   function random($receiver) {
     return Math.random();
   }
+  function random_0($receiver, min, max) {
+    return random($receiver) * (max - min) + min | 0;
+  }
   function crop($receiver, rect, copy) {
     if (copy === void 0)
       copy = null;
@@ -555,9 +558,62 @@ var example1 = function (_, Kotlin) {
   function main(args) {
     jumpMain();
   }
+  function BackgroundFX(game, container) {
+    this.game = game;
+    this.container = container;
+    this.count = 0.0;
+  }
+  BackgroundFX.prototype.preload = function () {
+    this.game.load.image('spin1', 'assets/sprites/spinObj_01.png');
+    this.game.load.image('spin2', 'assets/sprites/spinObj_02.png');
+    this.game.load.image('spin3', 'assets/sprites/spinObj_03.png');
+    this.game.load.image('spin4', 'assets/sprites/spinObj_04.png');
+    this.game.load.image('spin5', 'assets/sprites/spinObj_05.png');
+    this.game.load.image('spin6', 'assets/sprites/spinObj_06.png');
+    this.game.load.image('spin7', 'assets/sprites/spinObj_07.png');
+    this.game.load.image('spin8', 'assets/sprites/spinObj_08.png');
+  };
+  BackgroundFX.prototype.create = function () {
+    var tmp$;
+    this.renderTexture = this.game.add.renderTexture(960, 640, 'texture1');
+    this.renderTexture2 = this.game.add.renderTexture(960, 640, 'texture2');
+    this.currentTexture = this.renderTexture;
+    this.outputSprite = this.game.add.sprite(960 / 2 | 0, 640 / 2 | 0, this.currentTexture);
+    this.container.add(this.outputSprite);
+    this.outputSprite.anchor.x = 0.5;
+    this.outputSprite.anchor.y = 0.5;
+    this.stuffContainer = this.game.add.group();
+    this.stuffContainer.x = 960 / 2.0;
+    this.stuffContainer.y = 640 / 2.0;
+    this.container.add(this.stuffContainer);
+    tmp$ = 20 - 1;
+    for (var i = 0; i <= tmp$; i++) {
+      var item = this.stuffContainer.create(Math_0.random() * 400 - 200, Math_0.random() * 400 - 200, 'spin' + random_0(Phaser.Math, 1, 8));
+      item.anchor.setTo(0.5, 0.5);
+    }
+    this.count = 0.0;
+  };
+  BackgroundFX.prototype.update = function () {
+    this.stuffContainer.addAll('rotation', 0.1);
+    this.count += 0.01;
+    var temp = this.renderTexture;
+    this.renderTexture = this.renderTexture2;
+    this.renderTexture2 = temp;
+    setTexture_0(this.outputSprite, this.renderTexture);
+    this.stuffContainer.rotation = this.stuffContainer.rotation - 0.01;
+    this.outputSprite.scale.x = 1 + Math_0.sin(this.count) * 0.2;
+    this.outputSprite.scale.y = 1 + Math_0.sin(this.count) * 0.2;
+    this.renderTexture2.renderXY(this.container, 0, 0, true);
+  };
+  BackgroundFX.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'BackgroundFX',
+    baseClasses: []
+  };
   var Math_0;
   function jumpMain() {
-    var game = initKoala(GameConfig(void 0, gameProperties_getInstance().screenWidth, gameProperties_getInstance().screenHeight, Phaser.AUTO, 'gameDiv', void 0, void 0, void 0, void 0, new Jump()));
+    var game = initKoala(GameConfig(void 0, gameProperties_getInstance().screenWidth, gameProperties_getInstance().screenHeight, Phaser.CANVAS, 'gameDiv', void 0, void 0, void 0, void 0, new Jump()));
   }
   function gameProperties() {
     gameProperties_instance = this;
@@ -613,6 +669,7 @@ var example1 = function (_, Kotlin) {
   };
   function Jump() {
     Phaser.State.call(this);
+    this.fxTween = null;
     this.anim = ['rope1', 'rope2', 'rope3', 'rope2'];
     this.ropeSpeed = 1.0;
     this.hiScore = 0;
@@ -627,6 +684,9 @@ var example1 = function (_, Kotlin) {
   Jump.prototype.preload = function () {
     console.log('preload');
     this.game.load.pack('level', 'assets/jump/assets-pack.json', null, this);
+    this.fx = this.game.add.group();
+    this.backgroundFX = new BackgroundFX(this.game, this.fx);
+    this.backgroundFX.preload();
   };
   Jump.prototype.loadUpdate = function () {
     console.log('loadUpdate');
@@ -642,6 +702,9 @@ var example1 = function (_, Kotlin) {
   Jump.prototype.create = function () {
     console.log('create');
     this.lev = new level(this.game);
+    this.lev.addAt(this.fx, 1);
+    this.fx.alpha = 0.0;
+    this.backgroundFX.create();
     var music = this.game.add.audio('music');
     var sound_0 = this.game.add.sound('sound');
     music.play();
@@ -673,13 +736,39 @@ var example1 = function (_, Kotlin) {
     this.resetScore();
     this.resetRopeSpeed();
   };
+  function Jump$resetScore$ObjectLiteral() {
+    this.alpha = 0.0;
+  }
+  Jump$resetScore$ObjectLiteral.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    baseClasses: []
+  };
   Jump.prototype.resetScore = function () {
+    var tmp$;
     this.score = 0;
     this.setScore_3p81yu$(this.score);
+    if (this.fxTween != null)
+      ((tmp$ = this.fxTween) != null ? tmp$ : Kotlin.throwNPE()).stop();
+    this.fxTween = this.game.add.tween(this.fx).to(new Jump$resetScore$ObjectLiteral(), 1000, Kotlin.getBoundCallableRefForMemberFunction(Phaser.Easing.Linear, 'None'), true, null);
+  };
+  function Jump$increaseScore$ObjectLiteral() {
+    this.alpha = 1.0;
+  }
+  Jump$increaseScore$ObjectLiteral.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    baseClasses: []
   };
   Jump.prototype.increaseScore = function () {
+    var tmp$;
     this.score++;
     this.setScore_3p81yu$(this.score);
+    if (this.score === 10) {
+      if (this.fxTween != null)
+        ((tmp$ = this.fxTween) != null ? tmp$ : Kotlin.throwNPE()).stop();
+      this.fxTween = this.game.add.tween(this.fx).to(new Jump$increaseScore$ObjectLiteral(), 10000, Kotlin.getBoundCallableRefForMemberFunction(Phaser.Easing.Linear, 'None'), true, null);
+    }
   };
   Jump.prototype.setScore_3p81yu$ = function (score) {
     this.scoreText.text = score.toString();
@@ -700,6 +789,7 @@ var example1 = function (_, Kotlin) {
     this.player.jump();
   };
   Jump.prototype.update = function () {
+    this.backgroundFX.update();
     var result = Math_0.sin(this.currentAngle);
     if (result - this.lastResult > 0) {
       this.direction = 1;
@@ -781,6 +871,7 @@ var example1 = function (_, Kotlin) {
   package$Phaser.sqrt_m4iyer$ = sqrt;
   package$Phaser.abs_m4iyer$ = abs;
   package$Phaser.random_akwgk1$ = random;
+  package$Phaser.random_n28dad$ = random_0;
   package$Phaser.crop_p8qxvh$ = crop;
   package$Phaser.destroy_2ajn2y$ = destroy;
   package$Phaser.reviveKt = revive;
@@ -822,6 +913,7 @@ var example1 = function (_, Kotlin) {
   package$Phaser.DirectionObj = DirectionObj;
   _.main_kand9s$ = main;
   var package$jump = _.jump || (_.jump = {});
+  package$jump.BackgroundFX = BackgroundFX;
   Object.defineProperty(package$jump, 'Math', {
     get: function () {
       return Math_0;
