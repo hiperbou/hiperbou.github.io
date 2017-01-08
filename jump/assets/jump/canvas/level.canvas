@@ -1,7 +1,7 @@
 {
   "settings": {
-    "sceneWidth": 640,
-    "sceneHeight": 360,
+    "sceneWidth": 960,
+    "sceneHeight": 640,
     "generateOnSave": true,
     "enableStepping": false
   },
@@ -13,28 +13,80 @@
       "children": [
         {
           "type": "atlas-sprite",
-          "id": "c4ee13fe-2e96-4c4d-a496-50eea8609f2f",
+          "id": "86f5f0b3-52cf-4cf5-a5bd-d2ef1cd64b52",
           "asset": "0",
-          "info": {"editorName": "background"}
-        },
-        {
-          "type": "atlas-sprite",
-          "id": "9d327622-a088-4aa4-9e3c-91e3e8e7875a",
-          "asset": "1",
           "info": {
-            "editorName": "player",
-            "x": 390,
-            "y": 178
+            "editorName": "background",
+            "x": -30,
+            "y": -144,
+            "scale.x": 8,
+            "scale.y": 8
           }
         },
         {
           "type": "atlas-sprite",
           "id": "bbdfb0c9-d053-4f5d-ba42-f18c968f5217",
-          "asset": "2",
+          "asset": "1",
           "info": {
             "editorName": "rope1",
+            "editorPublic": true,
             "x": 329,
             "y": 426
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "137e489d-9584-4931-8b84-9737b655b8a3",
+          "asset": "2",
+          "info": {
+            "editorName": "sun",
+            "editorPublic": true,
+            "x": 95,
+            "y": 98,
+            "anchor.x": 0.5,
+            "anchor.y": 0.5
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "49ba9f40-62ac-415d-90d5-f64e1ecdb0e8",
+          "asset": "3",
+          "info": {
+            "editorName": "boy",
+            "x": 191,
+            "y": 361
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "616e02f8-2f8f-46b7-9217-1914fa2f498d",
+          "asset": "3",
+          "info": {
+            "editorName": "boy1",
+            "x": 768,
+            "y": 361,
+            "scale.x": -1
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "392580df-9860-4784-8120-57e820856d41",
+          "asset": "0",
+          "info": {
+            "editorName": "floor",
+            "x": -30,
+            "y": 533,
+            "scale.x": 8
+          }
+        },
+        {
+          "type": "atlas-sprite",
+          "id": "15b0503c-bd21-4a5c-9532-8dcc11c2827d",
+          "asset": "4",
+          "info": {
+            "editorName": "highscore",
+            "x": 502,
+            "y": 9
           }
         }
       ]
@@ -45,19 +97,31 @@
       "file": "WebContent/assets/jump/assets-pack.json",
       "section": "level",
       "asset": "jumpAtlas",
-      "sprite": "background"
+      "sprite": "floor"
     },
     "1": {
       "file": "WebContent/assets/jump/assets-pack.json",
       "section": "level",
       "asset": "jumpAtlas",
-      "sprite": "player"
+      "sprite": "rope1"
     },
     "2": {
       "file": "WebContent/assets/jump/assets-pack.json",
       "section": "level",
       "asset": "jumpAtlas",
-      "sprite": "rope1"
+      "sprite": "sun"
+    },
+    "3": {
+      "file": "WebContent/assets/jump/assets-pack.json",
+      "section": "level",
+      "asset": "jumpAtlas",
+      "sprite": "boy"
+    },
+    "4": {
+      "file": "WebContent/assets/jump/assets-pack.json",
+      "section": "level",
+      "asset": "jumpAtlas",
+      "sprite": "highscore"
     }
   }
 }

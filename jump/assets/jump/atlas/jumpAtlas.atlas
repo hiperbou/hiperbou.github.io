@@ -1,10 +1,13 @@
 {
   "files": [
-    "/Jump/WebContent/assets/jump/images/background.png",
     "/Jump/WebContent/assets/jump/images/player.png",
     "/Jump/WebContent/assets/jump/images/rope1.png",
     "/Jump/WebContent/assets/jump/images/rope2.png",
-    "/Jump/WebContent/assets/jump/images/rope3.png"
+    "/Jump/WebContent/assets/jump/images/rope3.png",
+    "/Jump/WebContent/assets/jump/images/sun.png",
+    "/Jump/WebContent/assets/jump/images/boy.png",
+    "/Jump/WebContent/assets/jump/images/floor.png",
+    "/Jump/WebContent/assets/jump/images/highscore.png"
   ],
   "settings": {
     "pot": false,

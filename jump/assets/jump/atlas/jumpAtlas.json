@@ -1,23 +1,63 @@
 {
   "frames": {
-    "background": {
+    "boy": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 152,
+        "y": 2,
+        "w": 140,
+        "h": 172
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 172
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 172
+      }
+    },
+    "floor": {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 436,
+        "y": 50,
+        "w": 128,
+        "h": 108
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 108
+      }
+    },
+    "highscore": {
       "trimmed": true,
       "rotated": false,
       "frame": {
         "x": 2,
         "y": 176,
-        "w": 960,
-        "h": 640
+        "w": 284,
+        "h": 40
       },
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 960,
-        "h": 640
+        "w": 284,
+        "h": 40
       },
       "sourceSize": {
-        "w": 960,
-        "h": 640
+        "w": 284,
+        "h": 40
       }
     },
     "player": {
@@ -44,8 +84,8 @@
       "trimmed": true,
       "rotated": false,
       "frame": {
-        "x": 595,
-        "y": 113,
+        "x": 303,
+        "y": 222,
         "w": 300,
         "h": 61
       },
@@ -64,8 +104,8 @@
       "trimmed": true,
       "rotated": false,
       "frame": {
-        "x": 152,
-        "y": 109,
+        "x": 2,
+        "y": 218,
         "w": 299,
         "h": 65
       },
@@ -84,8 +124,8 @@
       "trimmed": true,
       "rotated": false,
       "frame": {
-        "x": 595,
-        "y": 51,
+        "x": 303,
+        "y": 160,
         "w": 300,
         "h": 60
       },
@@ -104,8 +144,8 @@
       "trimmed": true,
       "rotated": false,
       "frame": {
-        "x": 453,
-        "y": 34,
+        "x": 294,
+        "y": 18,
         "w": 140,
         "h": 140
       },

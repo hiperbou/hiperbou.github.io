@@ -7,13 +7,6 @@
             "atlasURL": "assets/jump/atlas/jumpAtlas.json",
             "format": "TEXTURE_ATLAS_JSON_HASH"
         },
-		{
-            "type": "atlas",
-            "key": "jumpAtlas2",
-            "textureURL": "assets/jump/atlas/jumpAtlas2.png",
-            "atlasURL": "assets/jump/atlas/jumpAtlas2.json",
-            "format": "TEXTURE_ATLAS_JSON_HASH"
-        },
         {
             "type": "audio",
             "key": "music",

@@ -14,14 +14,23 @@ function level(aGame, aParent) {
 
 	/* --- pre-init-end --- */
 
-	this.game.add.sprite(0, 0, 'jumpAtlas', 'background', this);
+	var background = this.game.add.sprite(-30, -144, 'jumpAtlas', 'floor', this);
+	background.scale.setTo(8.0, 8.0);
 
 	var rope1 = this.game.add.sprite(329, 426, 'jumpAtlas', 'rope1', this);
 
 	var sun = this.game.add.sprite(95, 98, 'jumpAtlas', 'sun', this);
 	sun.anchor.setTo(0.5, 0.5);
 
-	this.game.add.sprite(-3, 7, 'jumpAtlas2', 'foreground', this);
+	this.game.add.sprite(191, 361, 'jumpAtlas', 'boy', this);
+
+	var boy1 = this.game.add.sprite(768, 361, 'jumpAtlas', 'boy', this);
+	boy1.scale.setTo(-1.0, 1.0);
+
+	var floor = this.game.add.sprite(-30, 533, 'jumpAtlas', 'floor', this);
+	floor.scale.setTo(8.0, 1.0);
+
+	this.game.add.sprite(502, 9, 'jumpAtlas', 'highscore', this);
 
 	 // public fields
 
